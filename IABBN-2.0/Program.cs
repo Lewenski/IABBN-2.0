@@ -1,57 +1,44 @@
 ﻿using System;
 
-namespace Imabigboynow
+class Iamabigboynow
 {
-	class MainClass
-	{
-		public static void Main (string[] args)
-		{
-			Console.WriteLine ("Press '1' or '2'");
-			int Numberone = 0;
-			int Numbertwo = 0;
-			bool End = false;
-			while(true)
-			{
-				int input = Console.ReadKey ().KeyChar;
-				if (!End)
-				{
-					if (input == '1') 
-					{
-						Numberone++;
-					} 
-					else if (input == '2') 
-					{
-						Numbertwo++;
-					}
-				}
-					
-				Console.Clear ();
-				Console.WriteLine ("{0}\n{1}",Numberone,Numbertwo);
+    public static void Main()
+    {
+        Console.WriteLine("Press '1' or '2'");
+        var one = 0;
+        var two = 0;
+        while (true)
+        {
+            int input = Console.ReadKey().KeyChar;
+            switch (input)
+            {
+                case '1':
+                    one++;
+                    break;
+                case '2':
+                    two++;
+                    break;
+            }
 
-				if (Numberone>99 && Numbertwo<100)
-				{
-					Console.WriteLine ("1 wins");
-					End = true;
-				}
-				else if (Numbertwo>99 && Numberone<100)
-				{
-					Console.WriteLine ("2 wins");
-					End = true;
-				}
-				else if (Numberone>Numbertwo && Numberone<100)
-				{
-					Console.WriteLine ("1 is in the lead");
-							}
-				else if (Numbertwo>Numberone && Numbertwo<100)
-				{
-					Console.WriteLine("2 is in the lead");
-				}
-				
-				if (Numbertwo == Numberone)
-				{
-					Console.WriteLine("1 and 2 are currently tied");
-				}
-			}
-		}
-	}
+            Console.Clear();
+            Console.WriteLine("{0}\n{1}", one, two);
+
+            if (one > 99 && two < 100)
+            {
+                Console.WriteLine("1 wins");
+                Console.ReadKey();
+                return;
+            }
+            if (two > 99 && one < 100)
+            {
+                Console.WriteLine("2 wins");
+                Console.ReadKey();
+                return;
+            }
+            if (one > two && one < 100) Console.WriteLine("1 is in the lead");
+            if (two > one && two < 100) Console.WriteLine("2 is in the lead");
+
+            if (two == one) Console.WriteLine("1 and 2 are currently tied");
+        }
+    }
 }
