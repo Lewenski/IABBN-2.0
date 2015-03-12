@@ -1,6 +1,0 @@
-D:\lholl55\My Documents\Projects\IABBN-2.0\IABBN-2.0\bin\Debug\IABBN-2.0.exe
-D:\lholl55\My Documents\Projects\IABBN-2.0\IABBN-2.0\bin\Debug\IABBN-2.0.pdb
-D:\lholl55\My Documents\Projects\IABBN-2.0\IABBN-2.0\obj\x86\Debug\IABBN-2.0.exe
-D:\lholl55\My Documents\Projects\IABBN-2.0\IABBN-2.0\obj\x86\Debug\IABBN-2.0.pdb
-C:\Users\E-Hern\Documents\GitHub\IABBN-2.0\IABBN-2.0\obj\x86\Debug\IABBN-2.0.exe
-C:\Users\E-Hern\Documents\GitHub\IABBN-2.0\IABBN-2.0\obj\x86\Debug\IABBN-2.0.pdb
