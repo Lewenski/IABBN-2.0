@@ -36,15 +36,15 @@ class Iamabigboynow
                 maxIndexes[j] = i;
                 j++;
             }
-            if (maxScores.Length == 1) Console.WriteLine(chars[maxIndexes[0]] + " is in the lead");
+            if (maxScores.Length == 1) Console.WriteLine("{0} is in the lead", chars[maxIndexes[0]]);
             else
             {
                 var status = "";
                 for (var i = 0; i < length - 2; i++)
                 {
-                    status += chars[maxIndexes[i]] + ", ";
+                    status += String.Format("{0}, ", chars[maxIndexes[i]]);
                 }
-                status += chars[maxIndexes[length - 2]] + " and " + chars[maxIndexes[length - 1]] + " are tied";
+                status += String.Format("{0} and {1} are tied", chars[maxIndexes[length - 2]], chars[maxIndexes[length - 1]]);
                 Console.WriteLine(status);
             }
             //TODO: add more stuff like more numbers/letters? more modes? set score to finish?
