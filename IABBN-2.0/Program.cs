@@ -1,46 +1,38 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
-class ImABigBoyNow
+internal class ImABigBoyNow
 {
     public static void Main()
     {
         Console.WriteLine("Press '1' or '2'");
-        var chars = new[] {'1', '2'};
-        var score = new[] { 0, 0 };
+        var scores = new Dictionary<char, int> {{'1', 0}, {'2', 0}};
+        //TODO: display stuff if over console.height
+        //foreach (var k in scores.Keys) Console.Write("{0}:", k);
         while (true)
         {
-            var input = Console.ReadKey().KeyChar;
-            var index = Array.IndexOf(chars, input);
-            score[index]++;
+            scores[Console.ReadKey().KeyChar]++;
             Console.Clear();
-            for (var i = 0; i < score.Length; i++) Console.WriteLine("{0}: {1}", chars[i], score[i]);
-
-            for (var i = 0; i < score.Length; i++)
+            foreach (var k in scores)
             {
-                if (!(score[i] > 99)) continue;
-                Console.WriteLine("{0} wins", chars[i]);
+                Console.WriteLine("{0}: {1}", k.Key, k.Value);
+                if (k.Value < 100) continue;
+                Console.WriteLine("{0} wins", k.Key);
                 Console.ReadKey();
                 return;
             }
-            var max = score.Max();
-            var maxScores = score.Where(t => t == max).ToArray();
-            Array.IndexOf(score, max);
-            var length = maxScores.Length;
-            var maxIndexes = new int[length];
-            var j = 0;
-            for (var i = 0; i < maxScores.Length; i++)
-            {
-                var k = Array.IndexOf(score, max, j);
-                maxIndexes[i] = k;
-                j = k + 1;
-            }
-            if (maxScores.Length == 1) Console.WriteLine("{0} is in the lead", chars[maxIndexes[0]]);
+            var max = scores.Values.Max();
+            var winning = (from k in scores where k.Value == max select k.Key).ToList();
+            var length = winning.Count();
+            //TODO: linqify
+            if (winning.Count == 1) Console.WriteLine("{0} is in the lead", winning[0]);
             else
             {
-                var status = "";
-                for (var i = 0; i < length - 2; i++) status += String.Format("{0}, ", chars[maxIndexes[i]]);
-                status += String.Format("{0} and {1} are tied", chars[maxIndexes[length - 2]], chars[maxIndexes[length - 1]]);
+                var status = new StringBuilder();
+                for (var i = 0; i < length - 2; i++) status.Append(winning[i]).Append(", ");
+                status.Append(winning[length - 2]).Append(" and ").Append(winning.Last()).Append(" are tied");
                 Console.WriteLine(status);
             }
             //TODO: add more stuff like more numbers/letters? more modes? set score to end at?
