@@ -1,44 +1,41 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-class Iamabigboynow
+internal class ImABigBoyNow
 {
     public static void Main()
     {
         Console.WriteLine("Press '1' or '2'");
-        var one = 0;
-        var two = 0;
+        var scores = new Dictionary<char, int> {{'1', 0}, {'2', 0}};
+        //TODO: display stuff if over console.height
+        //foreach (var k in scores.Keys) Console.Write("{0}:", k);
         while (true)
         {
-            int input = Console.ReadKey().KeyChar;
-            switch (input)
-            {
-                case '1':
-                    one++;
-                    break;
-                case '2':
-                    two++;
-                    break;
-            }
-
+            scores[Console.ReadKey().KeyChar]++;
             Console.Clear();
-            Console.WriteLine("{0}\n{1}", one, two);
-
-            if (one > 99 && two < 100)
+            foreach (var k in scores)
             {
-                Console.WriteLine("1 wins");
+                Console.WriteLine("{0}: {1}", k.Key, k.Value);
+                if (k.Value < 100) continue;
+                Console.WriteLine("{0} wins", k.Key);
                 Console.ReadKey();
                 return;
             }
-            if (two > 99 && one < 100)
+            var max = scores.Values.Max();
+            var winning = (from k in scores where k.Value == max select k.Key).ToList();
+            var length = winning.Count();
+            //TODO: linqify
+            if (winning.Count == 1) Console.WriteLine("{0} is in the lead", winning[0]);
+            else
             {
-                Console.WriteLine("2 wins");
-                Console.ReadKey();
-                return;
+                var status = new StringBuilder();
+                for (var i = 0; i < length - 2; i++) status.Append(winning[i]).Append(", ");
+                status.Append(winning[length - 2]).Append(" and ").Append(winning.Last()).Append(" are tied");
+                Console.WriteLine(status);
             }
-            if (one > two && one < 100) Console.WriteLine("1 is in the lead");
-            if (two > one && two < 100) Console.WriteLine("2 is in the lead");
-
-            if (two == one) Console.WriteLine("1 and 2 are currently tied");
+            //TODO: add more stuff like more numbers/letters? more modes? set score to end at?
         }
     }
 }
